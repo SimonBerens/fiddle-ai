@@ -1,17 +1,17 @@
 import TextareaAutosize from "react-textarea-autosize"
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline"
-import { useState } from "react";
+import { useState } from "react"
 
 interface PromptBoxProps {
-  submitPrompt: (prompt: string) => void
+  submitPrompt: (prompt: string) => Promise<void>
 }
 
 export function PromptBox({ submitPrompt }: PromptBoxProps) {
   const [prompt, setPrompt] = useState("")
 
-  function clearAndSubmitPrompt(prompt: string) {
+  async function clearAndSubmitPrompt(prompt: string) {
     setPrompt("")
-    submitPrompt(prompt)
+    await submitPrompt(prompt)
   }
 
   return (
@@ -30,12 +30,12 @@ export function PromptBox({ submitPrompt }: PromptBoxProps) {
         }}
         onKeyDown={(evt) => {
           if (evt.key === "Enter" && !evt.shiftKey) {
-            clearAndSubmitPrompt(prompt)
             evt.preventDefault()
+            void clearAndSubmitPrompt(prompt)
           }
         }}
       />
-      <button onClick={() => clearAndSubmitPrompt(prompt)} className="self-end">
+      <button onClick={() => void clearAndSubmitPrompt(prompt)} className="self-end">
         <PaperAirplaneIcon height="24px" width="24px" />
       </button>
     </div>
