@@ -4,6 +4,7 @@ import { api } from "@/utils/api"
 import type { Messages } from "@/utils/schemas"
 import { useImmer } from "use-immer"
 import { defaultMessages } from "@/messages"
+import { LoadingSpinner } from "@/components/LoadingSpinner"
 
 const Home: NextPage = () => {
   const submit = api.submit.submit.useMutation()
@@ -21,19 +22,26 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <iframe className="w-full h-screen"
-              srcDoc={messages[messages.length - 1]?.content}/>
-      <div className="fixed inset-x-0 bottom-0 mb-10 px-4
-      flex flex-row justify-center
-      md:mx-auto md:w-[800px]">
+      <iframe
+        className="h-screen w-full"
+        srcDoc={messages[messages.length - 1]?.content}
+      />
+      <div
+        className="fixed inset-x-0 bottom-0 mb-10 flex
+      flex-row justify-center px-4
+      md:mx-auto md:w-[800px]"
+      >
         <PromptBox submitPrompt={submitPrompt} />
-        <button className="p-4 ml-4 drop-shadow-xl bg-white
-        rounded-lg border border-solid border-gray-300
+        <button
+          className="ml-4 rounded-lg border border-solid
+        border-gray-300 bg-white p-4 drop-shadow-xl
         hover:ring-2 hover:ring-indigo-300"
-        onClick={() => setMessages(defaultMessages)}>
+          onClick={() => setMessages(defaultMessages)}
+        >
           Reset
         </button>
       </div>
+      {submit.isLoading && <LoadingSpinner />}
     </>
   )
 }
