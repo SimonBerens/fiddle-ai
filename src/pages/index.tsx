@@ -23,7 +23,17 @@ const Home: NextPage = () => {
     <>
       <iframe className="w-full h-screen"
               srcDoc={messages[messages.length - 1]?.content}/>
-      <PromptBox submitPrompt={submitPrompt} />
+      <div className="fixed inset-x-0 bottom-0 mb-10 px-4
+      flex flex-row justify-center
+      md:mx-auto md:w-[800px]">
+        <PromptBox submitPrompt={submitPrompt} />
+        <button className="p-4 ml-4 drop-shadow-xl bg-white
+        rounded-lg border border-solid border-gray-300
+        hover:ring-2 hover:ring-indigo-300"
+        onClick={() => setMessages(defaultMessages)}>
+          Reset
+        </button>
+      </div>
     </>
   )
 }

@@ -16,10 +16,10 @@ export function PromptBox({ submitPrompt }: PromptBoxProps) {
 
   return (
     <div
-      className="fixed inset-x-0 bottom-0 mb-10 flex w-full flex-row items-center
-                rounded-lg border border-solid border-gray-300 bg-white py-4
-                px-4 outline-none drop-shadow-xl
-                focus-within:ring-2 focus-within:ring-indigo-300 md:mx-auto md:w-[800px]"
+      className="flex flex-row items-center
+                rounded-lg border border-solid border-gray-300 bg-white
+                p-4 outline-none drop-shadow-xl
+                focus-within:ring-2 focus-within:ring-indigo-300 w-full"
     >
       <TextareaAutosize
         className="w-full resize-none border-none outline-none"
