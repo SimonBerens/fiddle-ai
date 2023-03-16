@@ -15,15 +15,14 @@ const Home: NextPage = () => {
       { role: "user", content: prompt },
     ]
     const { code } = await submit.mutateAsync(newMessages)
-    if (code !== undefined) {
-      newMessages.push({ role: "assistant", content: code })
-      setMessages(newMessages)
-      alert(code)
-    }
+    newMessages.push({ role: "assistant", content: code })
+    setMessages(newMessages)
   }
 
   return (
     <>
+      <iframe className="w-full h-screen"
+              srcDoc={messages[messages.length - 1]?.content}/>
       <PromptBox submitPrompt={submitPrompt} />
     </>
   )
