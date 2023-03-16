@@ -23,7 +23,7 @@ export function PromptBox({ submitPrompt }: PromptBoxProps) {
     >
       <TextareaAutosize
         className="w-full resize-none border-none outline-none"
-        placeholder="Give me a command!"
+        placeholder="Write a website that..."
         value={prompt}
         onChange={(evt) => {
           setPrompt(evt.target.value)
