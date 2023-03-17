@@ -29,7 +29,7 @@ export const submitRouter = createTRPCRouter({
     const completion = await openai.createChatCompletion({
       model: "gpt-4",
       messages: input,
-      max_tokens: 2000,
+      max_tokens: 6000,
     })
     const content = completion.data.choices[0]?.message?.content;
     return {
