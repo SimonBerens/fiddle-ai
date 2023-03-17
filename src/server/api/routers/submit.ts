@@ -27,7 +27,7 @@ function extractCode(text: string): string {
 export const submitRouter = createTRPCRouter({
   submit: publicProcedure.input(messagesSchema).mutation(async ({ input }) => {
     const completion = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
+      model: "gpt-4",
       messages: input,
       max_tokens: 2000,
     })
